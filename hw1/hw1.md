@@ -1,48 +1,28 @@
-## hw1 tasks :
-
-### 1 - set up a linux container
-
-#### 1.1 create an isolated process using :
-
-     - namespaces  
-     - cgroups  
-     - chroot  
+#### Create the folder that will become our container filesystem
 
 
-#### 1.2 - initiate connection between 2 network namespaces using ` ping `
+> ```bash
 
----
-
-### 2 - implement `k8s` with `k3s`
-
-#### 2.1 install k3s from k3s.io 
-
-#### 2.2 study about tools :
-
-     - crictl  
-     - ctr 
-
-
-#### 2.3 study about installation with more focus on :
-
-     - Air-gapped installation  
-
-#### 2.4 set up k3s as `air‑gapped` using `crictl` and `ctr` 
+> mkdir rootfs
+> echo "hello container" > rootfs/hello.txt
 
 
 
-### 3 - analyze the system behavior 
-
-#### 3.1 start a pod + container and monitor :
-
-     - review cgroups and namespaces
-     - limits on resources
+> ```
 
 
 
-### 4 - Seach and Study about :
+
+#### add busybox as a tool for next steps when im in the new ns
+
+> ```bash
+
+> sudo cp /bin/busybox rootfs/
+> sudo ln -s busybox rootfs/sh
 
 
-     - slice
-     - scope
 
+> ```
+
+
+i called link to busybox `sh` to get a shell from it for exploring the env inside my future ns
