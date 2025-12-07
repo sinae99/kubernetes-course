@@ -29,7 +29,7 @@
 
 #### 2.4 set up k3s as `air‑gapped` using `crictl` and `ctr` 
 
-
+---
 
 ### 3 - analyze the system behavior 
 
@@ -38,7 +38,7 @@
      - review cgroups and namespaces
      - limits on resources
 
-
+---
 
 ### 4 - Seach and Study about :
 
