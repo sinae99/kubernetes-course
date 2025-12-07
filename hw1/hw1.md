@@ -21,3 +21,28 @@
 
      - crictl  
      - ctr 
+
+
+#### 2.3 study about installation with more focus on :
+
+     - Air-gapped installation  
+
+#### 2.4 set up k3s as `air‑gapped` using `crictl` and `ctr` 
+
+
+
+### 3 - analyze the system behavior 
+
+#### 3.1 start a pod + container and monitor :
+
+     - review cgroups and namespaces
+     - limits on resources
+
+
+
+### 4 - Seach and Study about :
+
+
+     - slice
+     - scope
+
