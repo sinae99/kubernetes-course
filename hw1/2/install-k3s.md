@@ -12,6 +12,16 @@ All three files must be downloaded on an internet-connected machine and then tra
 
 ---
 
+```bash
+mkdir -p /internet-machine
+```
+
+```bash
+mkdir -p /airgapped-machine
+```
+
+
+
 ## 1. Download Files (on Internet Machine)
 
 ```bash
@@ -33,9 +43,6 @@ curl -L -o install.sh https://get.k3s.io
 
 ## 2. Transfer Files to Air-Gapped Machine
 
-```bash
-mkdir -p /root/airgapped-machine
-```
 
 ```bash
 cp ./*  /root/airgapped-machine/
