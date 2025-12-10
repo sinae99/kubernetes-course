@@ -31,18 +31,11 @@
 
 ---
 
-### 3 - analyze the system behavior 
-
-#### 3.1 start a pod + container and monitor :
-
-     - review cgroups and namespaces
-     - limits on resources
-
----
 
 ### 4 - Seach and Study about :
 
 
      - slice
      - scope
+
 
