@@ -1,11 +1,11 @@
 # Secret vs ConfigMap
 
 
-## Technical Differences
+## `Technical Differences`
 
----
 
-## Storage in etcd
+
+### Storage in etcd
 
 | Aspect | ConfigMap | Secret |
 |-----|----------|--------|
@@ -18,7 +18,7 @@
 
 ---
 
-## API Server Handling
+### API Server Handling
 
 > Both go through the **same Kubernetes API path**, but with different object types.
 
@@ -34,7 +34,7 @@
 
 ---
 
-## Volume Mount Behavior
+### Volume Mount Behavior
 
 > When mounted as volumes, the mechanics are identical.
 
@@ -50,7 +50,7 @@
 
 ---
 
-## Caching & Performance
+### Caching & Performance
 
 > Both are cached by kubelet.
 
@@ -66,7 +66,7 @@
 
 ---
 
-## RBAC & Access Control
+### RBAC & Access Control
 
 | Area | ConfigMap | Secret |
 |----|----------|--------|
@@ -78,7 +78,7 @@
 
 ---
 
-## Type System (Secrets Only)
+### Type System (Secrets Only)
 
 > Secrets have **built-in typing**.
 
@@ -93,7 +93,7 @@
 
 ---
 
-## Security Reality
+### Security Reality
 
 > Kubernetes does **not** magically secure Secrets.
 
@@ -108,7 +108,7 @@
 
 ---
 
-## Hard Technical Summary
+### Hard Technical Summary
 
 > Same delivery mechanism  
 > Same Pod interface  
@@ -125,7 +125,7 @@
 ---
 
 
-## Theorical Differences
+## `Theorical` Differences
 
 > **Both Secret and ConfigMap exist to inject data into Pods — nothing more, nothing less.**
 
@@ -134,7 +134,7 @@ but they solve it for **different types of data**.
 
 ---
 
-## What They Are Doing
+### What They Are Doing
 
 > From a running Pod’s perspective, **there is almost no difference**.
 
@@ -149,7 +149,7 @@ but they solve it for **different types of data**.
 
 ---
 
-## ConfigMap — What It Does
+### ConfigMap — What It Does
 
 > **ConfigMap exists to store application configuration that is safe to be visible.**
 
@@ -179,7 +179,7 @@ but they solve it for **different types of data**.
 
 ---
 
-## Secret — What It Does
+### Secret — What It Does
 
 > **Secret exists to store data that must not be exposed casually.**
 
@@ -207,7 +207,7 @@ but they solve it for **different types of data**.
 
 ---
 
-## Why They Are Separated
+### Why They Are Separated
 
 > Kubernetes **intentionally split them** to enforce human behavior, not technical behavior.
 
@@ -222,7 +222,7 @@ but they solve it for **different types of data**.
 
 ---
 
-## Side-by-Side Responsibility
+### Side-by-Side Responsibility
 
 | Question | ConfigMap | Secret |
 |-------|----------|--------|
@@ -234,7 +234,7 @@ but they solve it for **different types of data**.
 
 ---
 
-## Mental Model (Sticky)
+### Mental Model (Sticky)
 
 > **ConfigMap = how the app behaves**  
 > **Secret = who the app is**
