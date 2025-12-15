@@ -1,7 +1,7 @@
 ## hw1 tasks :
 
 ### 1 - scenario :
-  set up 3 nginx pod wit 3 different location each with has it owns hotname
+  set up 3 nginx pod with 3 different locations each with its own pod name
 
 
 ### 2 - Secret vs ConfigMap 
@@ -13,6 +13,7 @@
 
 
      - Kubeconfig
+
 
 
 
