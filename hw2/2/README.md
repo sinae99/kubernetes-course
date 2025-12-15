@@ -1,6 +1,132 @@
 # Secret vs ConfigMap
 
 
+## Technical Differences
+
+---
+
+## Storage in etcd
+
+| Aspect | ConfigMap | Secret |
+|-----|----------|--------|
+| Stored in etcd | ✅ | ✅ |
+| Data format | Plain text | Base64-encoded |
+| Encrypted at rest (default) | ❌ | ❌ |
+| Supports encryption config | ❌ | ✅ |
+
+> Without etcd encryption enabled, **both are readable by cluster admins**.
+
+---
+
+## API Server Handling
+
+> Both go through the **same Kubernetes API path**, but with different object types.
+
+| Detail | ConfigMap | Secret |
+|-----|----------|--------|
+| API resource | `configmaps` | `secrets` |
+| Validation | Minimal | Slightly stricter |
+| Size limit | ~1MB | ~1MB |
+| Binary data | ❌ | ✅ (`data` field) |
+
+> **Secret supports binary payloads**  
+> ConfigMap is text-oriented only.
+
+---
+
+## Volume Mount Behavior
+
+> When mounted as volumes, the mechanics are identical.
+
+| Feature | ConfigMap | Secret |
+|-----|----------|--------|
+| Volume type | `configMap` | `secret` |
+| Files created | One per key | One per key |
+| File permissions | `0644` | `0644` (can be tightened) |
+| Ownership | root:root | root:root |
+
+> The filesystem does **not care** which one it is.
+
+
+---
+
+## Caching & Performance
+
+> Both are cached by kubelet.
+
+| Detail | ConfigMap | Secret |
+|-----|----------|--------|
+| Cached on node | ✅ | ✅ |
+| Stored in memory | ❌ | ⚠️ (tmpfs for Secrets) |
+| Disk write | Yes | Usually no |
+
+> **Key difference**  
+> Secrets are commonly mounted using **tmpfs**  
+> → never written to disk on the node.
+
+---
+
+## RBAC & Access Control
+
+| Area | ConfigMap | Secret |
+|----|----------|--------|
+| RBAC verbs | Same | Same |
+| Default policies | Relaxed | Often restricted |
+| Least-privilege expectation | Medium | High |
+
+> Kubernetes assumes **Secrets need stricter control**, even if mechanics are similar.
+
+---
+
+## Type System (Secrets Only)
+
+> Secrets have **built-in typing**.
+
+| Secret Type | Purpose |
+|------------|--------|
+| `Opaque` | Generic |
+| `kubernetes.io/tls` | TLS certs |
+| `kubernetes.io/dockerconfigjson` | Registry auth |
+| `kubernetes.io/service-account-token` | SA tokens |
+
+> ConfigMap has **no types**.
+
+---
+
+## Security Reality
+
+> Kubernetes does **not** magically secure Secrets.
+
+- Secrets are:
+  - Base64-encoded
+  - API-readable
+  - Admin-accessible
+- Real security requires:
+  - etcd encryption
+  - RBAC discipline
+  - External secret managers
+
+---
+
+## Hard Technical Summary
+
+> Same delivery mechanism  
+> Same Pod interface  
+> Same kubelet logic  
+
+### The **real technical differences** are:
+
+- Secret supports **binary data**
+- Secret supports **tmpfs mounting**
+- Secret supports **types**
+- Secret integrates with **etcd encryption**
+- Secret is **treated as higher-risk** by the control plane
+
+---
+
+
+## Theorical Differences
+
 > **Both Secret and ConfigMap exist to inject data into Pods — nothing more, nothing less.**
 
 They solve **the same technical problem**,  
