@@ -1,6 +1,5 @@
-# Kubernetes Kubeconfig — Technical Overview
+# Kubeconfig
 
-## What is kubeconfig
 `kubeconfig` is a **client-side YAML configuration file** used by `kubectl` and other Kubernetes clients to authenticate to and communicate with one or more Kubernetes clusters.  
 It is **not stored in the cluster** and is never persisted in `etcd`.
 
@@ -11,8 +10,8 @@ Default location:
 
 ---
 
-## Core Structure
-A kubeconfig file is composed of four primary sections:
+## Structure
+A kubeconfig file is composed of four sections:
 
 - **clusters**: Defines Kubernetes API endpoints and trust material (CA)
 - **users**: Defines authentication methods (not Kubernetes users)
@@ -82,15 +81,6 @@ context:
   user: prod-admin
   namespace: default
 ```
-
----
-
-## Ownership and Lifecycle
-- **Cluster installers** (k3s, kubeadm) generate initial kubeconfigs
-- **Cloud providers** generate exec-based kubeconfigs
-- **Admins and automation tools** extend and manage contexts and users
-
-Deleting a kubeconfig only removes **client access**; it does not affect the cluster.
 
 ---
 
