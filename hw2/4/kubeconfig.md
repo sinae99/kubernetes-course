@@ -1,7 +1,5 @@
 # Kubeconfig
 
-`kubeconfig` is a **client-side YAML configuration file** used by `kubectl` and other Kubernetes clients to authenticate to and communicate with one or more Kubernetes clusters.  
-It is **not stored in the cluster** and is never persisted in `etcd`.
 
 Default location:
 ```bash
