@@ -1,4 +1,4 @@
-## hw1 tasks :
+## hw2 tasks :
 
 ### 1 - scenario :
   set up 3 nginx pod with 3 different locations each with its own pod name
